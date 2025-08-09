@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "ai-text-scrubber",
   "version": "0.1.0",
   "homepage": "https://areeves.github.io/ai-text-scrubber",
