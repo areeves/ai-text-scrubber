@@ -1,6 +1,7 @@
 
 import './App.css';
 import React, { useState } from 'react';
+import { processText } from './steps/index'
 
 function App() {
   const [input, setInput] = useState('');
@@ -8,9 +9,10 @@ function App() {
 
   // Placeholder for output logic
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(e.target.value);
-    // Example: just copy input to output for now
-    setOutput(e.target.value);
+    const input = e.target.value;
+    setInput(input);
+    const results = processText(input);
+    setOutput(JSON.stringify(results, null, 2));
   };
 
   return (
