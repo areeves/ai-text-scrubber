@@ -1,10 +1,11 @@
 
 import './App.css';
 import React, { useState } from 'react';
-import { processText } from './steps/index'
+import { processText, StepResult } from './steps/index'
 
 function App() {
   const [input, setInput] = useState('');
+  const [results, setResults] = useState<StepResult[]>([]);
   const [output, setOutput] = useState('');
 
   // Placeholder for output logic
@@ -12,7 +13,9 @@ function App() {
     const input = e.target.value;
     setInput(input);
     const results = processText(input);
-    setOutput(JSON.stringify(results, null, 2));
+    setResults(results);
+    const output = results.at(-1)?.output ?? input;
+    setOutput(output);
   };
 
   return (
@@ -27,6 +30,11 @@ function App() {
           rows={8}
           className="App-textarea"
         />
+        <div>
+        {results.map((r,i) => (
+          <p key={i}><b>{r.label}</b>: {r.message}</p>
+        ))}
+        </div>
         <label htmlFor="output-text">Output</label>
         <textarea
           id="output-text"
