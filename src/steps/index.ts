@@ -20,14 +20,40 @@ export function runSteps(steps: Step[], initialInput: string): StepResult[] {
   return results;
 }
 
+function replaceWithCount(
+  input: string,
+  search: string | RegExp,
+  replace: string,
+): { result: string; count: number } {
+  let count = 0;
+  const result = input.replace(
+    search instanceof RegExp ? search : new RegExp(search, 'g'),
+    () => {
+      count++;
+      return replace;
+    },
+  );
+  return { result, count };
+}
+
 // step to replace em dash and en dash with plain hyphen
 export const dashStep: Step = (input: string): StepResult => {
-  const output = input.replace(/—/g, '-').replace(/–/g, '-');
+  const { result: noEmDash, count: emDashes } = replaceWithCount(
+    input,
+    /\u2014/g,
+    '-',
+  );
+  const { result: output, count: enDashes } = replaceWithCount(
+    noEmDash,
+    /\u2013/g,
+    '-',
+  );
+  const message = `Replaced ${emDashes} em dashes and ${enDashes} en dashes`;
   return {
     label: 'Replace Dashes',
     input,
     output,
-    message: 'Replaced em dash and en dash with hyphen.',
+    message,
   };
 };
 
