@@ -1,7 +1,6 @@
-
 import './App.css';
 import React, { useState } from 'react';
-import { processText, StepResult } from './steps/index'
+import { processText, StepResult } from './steps/index';
 
 function App() {
   const [input, setInput] = useState('');
@@ -19,29 +18,31 @@ function App() {
   };
 
   return (
-    <div className="App-form-container">
+    <div className='App-form-container'>
       <h1>AI Text Scrubber</h1>
-      <form className="App-form" onSubmit={e => e.preventDefault()}>
-        <label htmlFor="input-text">Input</label>
+      <form className='App-form' onSubmit={(e) => e.preventDefault()}>
+        <label htmlFor='input-text'>Input</label>
         <textarea
-          id="input-text"
+          id='input-text'
           value={input}
           onChange={handleInputChange}
           rows={8}
-          className="App-textarea"
+          className='App-textarea'
         />
         <div>
-        {results.map((r,i) => (
-          <p key={i}><b>{r.label}</b>: {r.message}</p>
-        ))}
+          {results.map((r, i) => (
+            <p key={i}>
+              <b>{r.label}</b>: {r.message}
+            </p>
+          ))}
         </div>
-        <label htmlFor="output-text">Output</label>
+        <label htmlFor='output-text'>Output</label>
         <textarea
-          id="output-text"
+          id='output-text'
           value={output}
           readOnly
           rows={8}
-          className="App-textarea App-textarea-readonly"
+          className='App-textarea App-textarea-readonly'
         />
       </form>
     </div>

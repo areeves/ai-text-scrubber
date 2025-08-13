@@ -1,4 +1,3 @@
-
 body {
   background: #fff;
   color: #111;
@@ -11,7 +10,7 @@ body {
   padding: 32px 24px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   border: 2px solid #222;
 }
 
