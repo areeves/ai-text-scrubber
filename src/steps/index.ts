@@ -96,14 +96,15 @@ export const quoteStep: Step = (input: string): StepResult => {
 
 // step to replace special whitespace  characters
 export const whitespaceStep: Step = (input: string): StepResult => {
-  // TODO: Replace with /[\u0020\u00A0\u1680\u2000-\u200A\u202F\u205F\u3000]/g
-  // TODO: Do special space replacement and multi-space collapse seperately
-  const { result: output, count } = replaceWithCount(
-    input,
-    /\p{White_Space}+/gu,
+  const regex = /[\u00A0\u1680\u2000-\u200A\u202F\u205F\u3000]/g;
+  const { result: noSpecialSpaces, count: specialSpaceCount } =
+    replaceWithCount(input, regex, ' ');
+  const { result: output, count: multiSpaceCount } = replaceWithCount(
+    noSpecialSpaces,
+    / {2,}/g,
     ' ',
   );
-  const message = `Replaced ${count} whitepace sequences`;
+  const message = `Replaced ${specialSpaceCount} special spaces and collapsed ${multiSpaceCount} multiple spaces`;
   return {
     label: 'Normalize Whitespace',
     input,
