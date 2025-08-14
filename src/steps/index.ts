@@ -59,12 +59,17 @@ export const dashStep: Step = (input: string): StepResult => {
 
 // step to remove non-printable characters
 export const nonPrintableStep: Step = (input: string): StepResult => {
-  const output = input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+  const { result: output, count } = replaceWithCount(
+    input,
+    /[\x00-\x1F\x7F-\x9F]/g,
+    '',
+  );
+  const message = `Removed ${count} non-printable characters.`;
   return {
     label: 'Remove Non-Printable Characters',
     input,
     output,
-    message: 'Removed non-printable characters.',
+    message,
   };
 };
 
