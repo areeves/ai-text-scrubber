@@ -70,16 +70,22 @@ export const nonPrintableStep: Step = (input: string): StepResult => {
 
 // step to replace special quotes with standard versions
 export const quoteStep: Step = (input: string): StepResult => {
-  const output = input
-    .replace(/“/g, '"')
-    .replace(/”/g, '"')
-    .replace(/‘/g, "'")
-    .replace(/’/g, "'");
+  const { result: withoutCurlySingle, count: curlySingles } = replaceWithCount(
+    input,
+    /[\u2018\u2019]/g,
+    "'",
+  ); // Curly single quotes to straight single quote
+  const { result: output, count: curlyDoubles } = replaceWithCount(
+    withoutCurlySingle,
+    /[\u201C\u201D]/g,
+    '"',
+  ); // Curly double quotes to straight double quote
+  const message = `Replaced ${curlySingles} single quotes and ${curlyDoubles} double quotes.`;
   return {
     label: 'Replace Special Quotes',
     input,
     output,
-    message: 'Replaced special quotes with standard versions.',
+    message,
   };
 };
 
