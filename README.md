@@ -1,6 +1,52 @@
-# Getting Started with Create React App
+
+# AI Text Scrubber
+
+AI Text Scrubber is a web application that cleans and normalizes text using a series of automated steps powered by simple AI logic. It is designed to help you quickly sanitize text for further processing, analysis, or publishing.
+
+## Features
+
+- **Replace Dashes:** Converts em dash (—) and en dash (–) to standard hyphens (-).
+- **Remove Non-Printable Characters:** Strips out control and other non-printable characters.
+- **Replace Special Quotes:** Converts curly quotes (“ ” ‘ ’) to standard quotes (" ').
+- **Normalize Whitespace:** Collapses multiple spaces and trims leading/trailing whitespace.
+- **Step-by-Step Output:** Shows the result of each cleaning step for transparency and debugging.
+
+## Usage
+
+1. Enter or paste your text into the input box.
+2. The app will automatically process the text and display the output, along with details for each cleaning step.
+3. Copy the cleaned text for your needs.
+
+## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### Available Scripts
+
+In the project directory, you can run:
+
+#### `npm start`
+
+Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+#### `npm test`
+
+Launches the test runner in interactive watch mode.
+
+#### `npm run build`
+
+Builds the app for production to the `build` folder.
+
+## Project Structure
+
+- `src/App.tsx`: Main application component and UI.
+- `src/steps/index.ts`: Contains the text cleaning steps and processing logic.
+- `public/`: Static assets and HTML template.
+- `build/`: Production build output.
+
+## License
+
+MIT
 
 ## Available Scripts
 
