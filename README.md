@@ -1,4 +1,3 @@
-
 # AI Text Scrubber
 
 AI Text Scrubber is a web application that cleans and normalizes text using a series of automated steps powered by simple AI logic. It is designed to help you quickly sanitize text for further processing, analysis, or publishing.
